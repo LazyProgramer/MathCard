@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmifijihnj05v"]
+
+[ext_resource type="Script" path="res://script/deck_n_hand.gd" id="1_48mwd"]
+
+[node name="DeckNHand" type="Node2D"]
+script = ExtResource("1_48mwd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpawnPoint" type="Node2D" parent="CanvasLayer"]
+position = Vector2(328, 144)
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "create c1"
+
+[node name="Button2" type="Button" parent="."]
+offset_top = 31.0
+offset_right = 79.0
+offset_bottom = 62.0
+text = "create c2"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

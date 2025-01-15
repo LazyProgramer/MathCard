@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxvvafw0la2xt"]
+
+[ext_resource type="Script" path="res://script/card.gd" id="1_xmn34"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_62q0o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pjef7"]
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4ich"]
+size = Vector2(90, 135)
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_xmn34")
+card_value = ": 4"
+
+[node name="BaseCard" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(90, 135)
+texture = SubResource("CanvasTexture_62q0o")
+
+[node name="Number" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Number"]
+offset_left = -36.0
+offset_top = -54.0
+offset_right = 36.0
+offset_bottom = 54.0
+text = ": 4"
+label_settings = SubResource("LabelSettings_pjef7")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_u4ich")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhnxfc6f7p2q6"]
+
+[ext_resource type="Script" path="res://script/game_number.gd" id="1_b1mrd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e5fqf"]
+font_size = 24
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dd16n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0myty"]
+font_size = 24
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lgnsy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_275ci"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[node name="GameNumber" type="Node2D"]
+script = ExtResource("1_b1mrd")
+
+[node name="NormalGame" type="Node2D" parent="."]
+
+[node name="GameNumber" type="Label" parent="NormalGame"]
+offset_right = 960.0
+offset_bottom = 156.0
+text = "Center"
+label_settings = SubResource("LabelSettings_e5fqf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player 1" type="Node2D" parent="NormalGame"]
+
+[node name="Point 1" type="Node2D" parent="NormalGame/Player 1"]
+visible = false
+position = Vector2(75, 120)
+
+[node name="Point" type="Sprite2D" parent="NormalGame/Player 1/Point 1"]
+scale = Vector2(32, 32)
+texture = SubResource("CanvasTexture_dd16n")
+
+[node name="Point 2" type="Node2D" parent="NormalGame/Player 1"]
+visible = false
+position = Vector2(135, 120)
+
+[node name="Point" type="Sprite2D" parent="NormalGame/Player 1/Point 2"]
+scale = Vector2(32, 32)
+texture = SubResource("CanvasTexture_dd16n")
+
+[node name="Goal" type="Label" parent="NormalGame/Player 1"]
+offset_left = 25.0
+offset_right = 185.0
+offset_bottom = 156.0
+text = "Center"
+label_settings = SubResource("LabelSettings_0myty")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player 2" type="Node2D" parent="NormalGame"]
+position = Vector2(800, 0)
+
+[node name="Point 1" type="Node2D" parent="NormalGame/Player 2"]
+visible = false
+position = Vector2(25, 120)
+
+[node name="Point" type="Sprite2D" parent="NormalGame/Player 2/Point 1"]
+scale = Vector2(32, 32)
+texture = SubResource("CanvasTexture_dd16n")
+
+[node name="Point 2" type="Node2D" parent="NormalGame/Player 2"]
+visible = false
+position = Vector2(85, 120)
+
+[node name="Point" type="Sprite2D" parent="NormalGame/Player 2/Point 2"]
+scale = Vector2(32, 32)
+texture = SubResource("CanvasTexture_dd16n")
+
+[node name="Goal" type="Label" parent="NormalGame/Player 2"]
+offset_left = -25.0
+offset_right = 135.0
+offset_bottom = 156.0
+text = "Center"
+label_settings = SubResource("LabelSettings_0myty")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardsPlayed" type="Label" parent="NormalGame"]
+offset_right = 960.0
+offset_bottom = 81.0
+text = "Center"
+label_settings = SubResource("LabelSettings_e5fqf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="End" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="End"]
+position = Vector2(480, 270)
+scale = Vector2(960, 540)
+texture = SubResource("CanvasTexture_lgnsy")
+
+[node name="Label" type="Label" parent="End"]
+offset_right = 960.0
+offset_bottom = 540.0
+text = "Winner"
+label_settings = SubResource("LabelSettings_275ci")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button4" type="Button" parent="End"]
+offset_left = 436.0
+offset_top = 360.0
+offset_right = 529.0
+offset_bottom = 391.0
+text = "New Game"
+
+[connection signal="pressed" from="End/Button4" to="." method="_on_button_4_pressed"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfmta8k1wd52u"]
+
+[ext_resource type="Script" path="res://script/hand.gd" id="1_led0y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vdtr"]
+radius = 500.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfb88"]
+font_size = 20
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_led0y")
+hand_radius = 500
+angle_limit = 25.0
+max_card_spread_angle = 5.0
+
+[node name="DebugShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7vdtr")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-100, -625)
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Steals: 1"
+label_settings = SubResource("LabelSettings_nfb88")
+
+[connection signal="card_activated" from="." to="." method="_on_card_activated"]
