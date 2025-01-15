@@ -14,7 +14,7 @@ size = Vector2(90, 135)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_xmn34")
-card_value = ": 4"
+card_value = "- 5"
 
 [node name="BaseCard" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -28,7 +28,7 @@ offset_left = -36.0
 offset_top = -54.0
 offset_right = 36.0
 offset_bottom = 54.0
-text = ": 4"
+text = "- 5"
 label_settings = SubResource("LabelSettings_pjef7")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -32,7 +32,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	game_number_label.set_text(str(game_number))
-	round_num_label.set_text("Cards played: " + str(round_num) + "/12")
+	round_num_label.set_text("Cards played: " + str(round_num))
 	
 	_check_for_winner()
 	_update_points()

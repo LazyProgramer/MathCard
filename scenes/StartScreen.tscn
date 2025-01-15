@@ -24,7 +24,8 @@ text = "Welcome
 Rules:
 Reach your goal by using your cards on the play number.
 After 4 cards have been played, the closest player to their goal wins 1 point and both players can steal another card.
-After 12 cards have been played the game ends and the player with the most points wins.
+The game ends once a player as reach their goal or has won 3 rounds.
+A round ends after 4 cards have been played, and the player closest to their goal wins the round.
 During their turn the player can chose to draw a new card, play one of their cards or steal one from their oponent if they still have a steal available.
 Each player starts with 4 cards and 1 steal."
 label_settings = SubResource("LabelSettings_f5i07")
