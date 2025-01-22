@@ -13,3 +13,4 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	self.visible = false
+	

@@ -4,7 +4,7 @@ class_name Card extends Node2D
 signal mouse_entered(card: Card)
 signal mouse_exited(card: Card)
 
-@export var card_value: String = "Card Value"
+@export var card_value: String
 
 @onready var value_label: Label = $Number/Label
 @onready var card: Sprite2D = $BaseCard
@@ -26,7 +26,7 @@ func activate():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	setValue(card_value)
 
 func _new_card_value():
 	var eq = list_eq.pick_random()
@@ -39,10 +39,10 @@ func _new_card_value():
 	return str(eq + " " + num)
 
 func highlight():
-	card.scale =  Vector2(90*1.1,135*1.1)
+	card.scale = Vector2(1.1,1.1)
 
 func unhighlight():
-	card.scale = Vector2(90,135)
+	card.scale = Vector2(1,1)
 	
 func _on_area_2d_mouse_entered() -> void:
 	mouse_entered.emit(self)

@@ -1,20 +1,137 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhnxfc6f7p2q6"]
+[gd_scene load_steps=13 format=3 uid="uid://bhnxfc6f7p2q6"]
 
 [ext_resource type="Script" path="res://script/game_number.gd" id="1_b1mrd"]
+[ext_resource type="AudioStream" uid="uid://cs13h0bjtg58o" path="res://sound/winner.wav" id="2_uyfut"]
+[ext_resource type="Texture2D" uid="uid://bmyo21stdu16q" path="res://sprites/winner.jpg" id="2_v3pd6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e5fqf"]
-font_size = 24
+font_size = 32
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dd16n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0myty"]
 font_size = 24
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_lgnsy"]
+[sub_resource type="LabelSettings" id="LabelSettings_lrrry"]
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_275ci"]
 font_size = 32
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_paawh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(164, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(796, 400)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ljkun"]
+resource_name = "player1_card"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(164, 400), Vector2(480, 230), Vector2(164, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_qv3g4"]
+resource_name = "player2_card"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(796, 400), Vector2(480, 230), Vector2(796, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8t484"]
+_data = {
+"RESET": SubResource("Animation_paawh"),
+"player1_card": SubResource("Animation_ljkun"),
+"player2_card": SubResource("Animation_qv3g4")
+}
 
 [node name="GameNumber" type="Node2D"]
 script = ExtResource("1_b1mrd")
@@ -22,8 +139,9 @@ script = ExtResource("1_b1mrd")
 [node name="NormalGame" type="Node2D" parent="."]
 
 [node name="GameNumber" type="Label" parent="NormalGame"]
+offset_top = 145.0
 offset_right = 960.0
-offset_bottom = 156.0
+offset_bottom = 301.0
 text = "Center"
 label_settings = SubResource("LabelSettings_e5fqf")
 horizontal_alignment = 1
@@ -32,7 +150,6 @@ vertical_alignment = 1
 [node name="Player 1" type="Node2D" parent="NormalGame"]
 
 [node name="Point 1" type="Node2D" parent="NormalGame/Player 1"]
-visible = false
 position = Vector2(75, 120)
 
 [node name="Point" type="Sprite2D" parent="NormalGame/Player 1/Point 1"]
@@ -40,7 +157,6 @@ scale = Vector2(32, 32)
 texture = SubResource("CanvasTexture_dd16n")
 
 [node name="Point 2" type="Node2D" parent="NormalGame/Player 1"]
-visible = false
 position = Vector2(135, 120)
 
 [node name="Point" type="Sprite2D" parent="NormalGame/Player 1/Point 2"]
@@ -60,7 +176,6 @@ vertical_alignment = 1
 position = Vector2(800, 0)
 
 [node name="Point 1" type="Node2D" parent="NormalGame/Player 2"]
-visible = false
 position = Vector2(25, 120)
 
 [node name="Point" type="Sprite2D" parent="NormalGame/Player 2/Point 1"]
@@ -68,7 +183,6 @@ scale = Vector2(32, 32)
 texture = SubResource("CanvasTexture_dd16n")
 
 [node name="Point 2" type="Node2D" parent="NormalGame/Player 2"]
-visible = false
 position = Vector2(85, 120)
 
 [node name="Point" type="Sprite2D" parent="NormalGame/Player 2/Point 2"]
@@ -85,20 +199,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CardsPlayed" type="Label" parent="NormalGame"]
+offset_top = 70.0
 offset_right = 960.0
-offset_bottom = 81.0
+offset_bottom = 151.0
 text = "Center"
-label_settings = SubResource("LabelSettings_e5fqf")
+label_settings = SubResource("LabelSettings_lrrry")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="End" type="Node2D" parent="."]
-visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="End"]
 position = Vector2(480, 270)
-scale = Vector2(960, 540)
-texture = SubResource("CanvasTexture_lgnsy")
+scale = Vector2(2, 2)
+texture = ExtResource("2_v3pd6")
 
 [node name="Label" type="Label" parent="End"]
 offset_right = 960.0
@@ -114,5 +228,19 @@ offset_top = 360.0
 offset_right = 529.0
 offset_bottom = 391.0
 text = "New Game"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="End"]
+stream = ExtResource("2_uyfut")
+
+[node name="Player1" type="Node2D" parent="."]
+position = Vector2(164, 400)
+
+[node name="Player2" type="Node2D" parent="."]
+position = Vector2(796, 400)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8t484")
+}
 
 [connection signal="pressed" from="End/Button4" to="." method="_on_button_4_pressed"]

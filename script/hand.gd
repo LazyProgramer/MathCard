@@ -71,6 +71,7 @@ func _input(event) -> void:
 		var card = hand[current_higlighted_card_idx]
 		card_activated.emit(card)
 		current_higlighted_card_idx = -1
+		$AudioStreamPlayer2D.play()
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -90,6 +91,11 @@ func _process(delta: float) -> void:
 	
 	if (collision_shape.shape as CircleShape2D).radius != hand_radius:
 		(collision_shape.shape as CircleShape2D).set_radius(hand_radius)
+		
+	if turn:
+		$".".scale = Vector2(1.05, 1.05)
+	else:
+		$".".scale = Vector2(0.95, 0.95)
 
 func add_steal():
 	steals += 1

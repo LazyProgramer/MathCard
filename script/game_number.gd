@@ -26,8 +26,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	end_panel.visible = false
-	player_1_label.set_text(str(player_1_number))
-	player_2_label.set_text(str(player_2_number))
+	player_1_label.set_text("Goal: " + str(player_1_number))
+	player_2_label.set_text("Goal: " + str(player_2_number))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -52,21 +52,38 @@ func _check_for_winner() -> void:
 			
 func _update_points() -> void:
 	if player_1_points >= 1:
-		player_1_point_1.visible = true
+		$"NormalGame/Player 1/Point 1/Point".modulate = Color(0,1,0)
 	if player_1_points >= 2:
-		player_1_point_2.visible = true
+		$"NormalGame/Player 1/Point 2/Point".modulate = Color(0,1,0)
 		
 	if player_2_points >= 1:
-		player_2_point_1.visible = true
+		$"NormalGame/Player 2/Point 1/Point".modulate = Color(0,1,0)
 	if player_2_points >= 2:
-		player_2_point_2.visible = true
+		$"NormalGame/Player 2/Point 2/Point".modulate = Color(0,1,0)
 
 func end_game(winner: String) -> void:
+	if !end_panel.visible:
+		$End/AudioStreamPlayer2D.play()
 	end_panel.visible = true
 	victor_label.set_text(str("Winner\n"+winner))
 
-func calculate_new_number(eq: String) -> void:
-	var eq_list = eq.split(" ")
+func calculate_new_number(card: Card, turn: int) -> void:
+	var eq_list = card.card_value.split(" ")
+	
+	if turn == 1:
+		$Player1.add_child(card)
+		card.position = Vector2(0,0)
+		$AnimationPlayer.play("player1_card")
+		await get_tree().create_timer(1).timeout
+		$Player1.remove_child(card)
+	else:
+		$Player2.add_child(card)
+		card.position = Vector2(0,0)
+		$AnimationPlayer.play("player2_card")
+		await get_tree().create_timer(1).timeout
+		$Player2.remove_child(card)
+	
+	
 	if(eq_list[0] == "+"):
 		game_number = game_number + int(eq_list[1])
 	elif(eq_list[0] == "-"):
